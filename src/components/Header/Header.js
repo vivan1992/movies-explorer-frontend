@@ -44,10 +44,10 @@ const Header = () => {
               <Route path='/' element={
                 <>
                   <li className="menu__item">
-                    <Link to="/signup" className='menu__link'>Регистрация</Link>
+                    <Link to="/signup" className='menu__signup'>Регистрация</Link>
                   </li>
                   <li className="menu__item">
-                    <Link to="/signin" className='menu__link menu__link_button'>Войти</Link>
+                    <Link to="/signin" className='menu__signin'>Войти</Link>
                   </li>
                 </>
               }/>
