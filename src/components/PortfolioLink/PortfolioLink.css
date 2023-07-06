@@ -1,0 +1,22 @@
+.portfolio-link {
+  width: 100%;
+  border-bottom: 1px solid #424242;
+  color: #FFF;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: -1.2px;
+  position: relative;
+  display: block;
+  padding-bottom: 19px;
+  padding-top: 20px;
+  text-decoration: none;
+}
+
+.portfolio-link::after {
+  content: '↗';
+  position: absolute;
+  right: 1px;
+  top: 25px;
+}
