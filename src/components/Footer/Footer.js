@@ -9,10 +9,10 @@ const Footer = () => {
         <p className="footer__copyright">© 2023</p>
         <ul className="footer__items">
           <li className="footer__item">
-            <Link className='footer__link'>Яндекс.Практикум</Link>
+            <Link to='https://practicum.yandex.ru/' className='footer__link link-hover'>Яндекс.Практикум</Link>
           </li>
           <li className="footer__item">
-            <Link className='footer__link'>Github</Link>
+            <Link to='https://github.com/vivan1992' className='footer__link link-hover'>Github</Link>
           </li>
         </ul>
       </div>

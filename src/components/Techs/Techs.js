@@ -3,7 +3,7 @@ import SectionTitle from '../SectionTitle/SectionTitle';
 
 const Techs = () => {
   return (
-    <section className="techs">
+    <section id='techs' className="techs">
       <SectionTitle text='Технологии'/>
       <h3 className="tech__title">7 технологий</h3>
       <p className="tech__subtitle">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>

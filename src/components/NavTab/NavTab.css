@@ -9,7 +9,13 @@
   justify-content: center;
 }
 
-.navtab__item {
+.navtab__link {
+  text-decoration: none;
+  color: #FFF;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
   width: 96px;
   height: 36px;
   border-radius: 10px;
@@ -19,11 +25,15 @@
   align-items: center;
 }
 
-.navtab__link {
-  text-decoration: none;
-  color: #FFF;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 16px;
+@media screen and (max-width: 576px) {
+  .navtab {
+    gap: 6px;
+  }
+
+  .navtab__link {
+    width: 82px;
+    height: 26px;
+    border-radius: 6px;
+    font-size: 10px;
+  }
 }

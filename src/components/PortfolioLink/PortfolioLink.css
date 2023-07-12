@@ -20,3 +20,25 @@
   right: 1px;
   top: 25px;
 }
+
+.portfolio-link_border-none {
+  border-bottom: none;
+}
+
+@media screen and (max-width: 768px) {
+  .portfolio-link {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .portfolio-link {
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.72px;
+  }
+
+  .portfolio-link::after {
+    top: 20px;
+  }
+}

@@ -28,20 +28,19 @@
   color: #FFF;
   font-size: 13px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 18px;
 }
 
+.menu__link_active {
+  font-weight: 500;
+}
 .menu__link_font-size14 {
   font-size: 14px;
 }
 
 .menu__link_line-height16 {
   line-height: 16px;
-}
-
-.menu__link_font-weight400 {
-  font-weight: 400;
 }
 
 .menu__signup {
@@ -77,4 +76,24 @@
   height: 30px;
   border-radius: 6px;
   margin-left: 13px;
+}
+
+@media screen and (max-width: 576px) {
+  .menu__items {
+    padding-left: 0;
+  }
+
+  .menu__signup {
+    font-size: 10px;
+  }
+
+  .menu__signin {
+    font-size: 10px;
+    width: 54px;
+    height: 26px;
+  }
+
+  .menu__items_right {
+    gap: 14px;
+  }
 }

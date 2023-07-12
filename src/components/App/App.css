@@ -6,3 +6,11 @@
   align-items: center;
   font-family: 'Inter', 'Arial', sans-serif;
 }
+
+.link-hover:hover {
+  opacity: 0.7;
+}
+
+.button-hover:hover {
+  opacity: 0.8;
+}
