@@ -12,7 +12,7 @@ const MoviesCard = ({card, textButton}) => {
   }
 
   const cardLikeButtonClassName = (
-    `card__like button-hover ${isLiked && 'card__like_active'}`
+    `card-list__like button-hover ${isLiked && 'card-list__like_active'}`
   );;
 
 
@@ -38,11 +38,11 @@ const MoviesCard = ({card, textButton}) => {
 
   return (
     <>
-      <div className="card__title-wrapper">
-        <p className="card__title">{card.nameRU}</p>
-        <p className="card__duration">{duration}</p>
+      <div className="card-list__title-wrapper">
+        <p className="card-list__title">{card.nameRU}</p>
+        <p className="card-list__duration">{duration}</p>
       </div>
-      <img className='card__image' src={card.image} alt={card.nameRU} />
+      <img className='card-list__image' src={card.image} alt={card.nameRU} />
       <button className={cardLikeButtonClassName} onClick={hendelClickLike}>
         {!isLiked ? textButton : null}
       </button>

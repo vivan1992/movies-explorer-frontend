@@ -33,15 +33,17 @@ const App = () => {
   return (
     <div className="app">
       {renderCondition || renderHederByProfile ? <Header handleBurgerClick={handleBurgerClick}/> : null}
-      <Routes>
-        <Route path='/' element={<Main/>}/>
-        <Route path='/movies' element={<Movies card={initialCards} textButton='Сохранить'/>}/>
-        <Route path='/saved-movies' element={<SavedMovies card={savedCards} textButton='x'/>}/>
-        <Route path='/profile' element={<Profile/>}/>
-        <Route path='/signin' element={<Login/>}/>
-        <Route path='/signup' element={<Register/>}/>
-        <Route path='/*' element={<NotFound/>}/>
-      </Routes>
+      <main className='main'>
+        <Routes>
+          <Route path='/' element={<Main/>}/>
+          <Route path='/movies' element={<Movies card={initialCards} textButton='Сохранить'/>}/>
+          <Route path='/saved-movies' element={<SavedMovies card={savedCards} textButton='x'/>}/>
+          <Route path='/profile' element={<Profile/>}/>
+          <Route path='/signin' element={<Login/>}/>
+          <Route path='/signup' element={<Register/>}/>
+          <Route path='/*' element={<NotFound/>}/>
+        </Routes>
+      </main>
       {renderCondition ? <Footer/> : null}
       <BurgerMenu isOpen={isOpenBurgerMenu} handleBurgerClickClose={handleBurgerClickClose}/>
     </div>

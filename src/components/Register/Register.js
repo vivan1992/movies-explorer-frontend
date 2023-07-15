@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Register = () => {
   return (
-    <section className="register">
+    <div className="register">
       <LoginForm title='Добро пожаловать!' textButton='Зарегистрироваться'>
         <label className='login-form__field'>
           <span className="login-form__placeholder">Имя</span>
@@ -20,7 +20,7 @@ const Register = () => {
         Уже зарегистрированы?
         <Link to='/signin' className='register__link'>Войти</Link>
       </p>
-    </section>
+    </div>
   );
 }
 

@@ -18,7 +18,7 @@ const Navigation = ({handleBurgerClick}) => {
   };
 
   const moviesRoute = renderRouteWithArrPath(
-    <ul className="menu__items menu_hidden">
+    <ul className="menu__items menu__items_hidden">
       <li className="menu__item">
         <NavLink to="/movies" className={isActiveLink}>Фильмы</NavLink>
       </li>
@@ -30,7 +30,9 @@ const Navigation = ({handleBurgerClick}) => {
 
   const profileRoute = renderRouteWithArrPath(
     <>
-      <ButtonProfile className='menu_hidden'/>
+      <li className="menu__item">
+        <ButtonProfile isHidden={true}/>
+      </li>
       <li onClick={handleBurgerClick} className="menu__burger link-hover">
         <div className="menu__burger-line"></div>
         <div className="menu__burger-line"></div>

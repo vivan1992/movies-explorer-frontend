@@ -4,7 +4,7 @@
   background: #272727;
 }
 
-.tech__title {
+.techs__title {
   color: #FFF;
   text-align: center;
   font-size: 50px;
@@ -17,7 +17,7 @@
   margin: 90px auto 0 auto;
 }
 
-.tech__subtitle {
+.techs__subtitle {
   color: #FFF;
   text-align: center;
   font-size: 14px;
@@ -61,11 +61,11 @@
     padding: 90px 50px;
   }
 
-  .tech__title {
+  .techs__title {
     margin: 80px auto 0 auto;
   }
 
-  .tech__subtitle {
+  .techs__subtitle {
     margin: 22px auto 0 auto;
     font-size: 12px;
     line-height: 18px;
@@ -89,7 +89,7 @@
     padding: 70px 18px;
   }
 
-  .tech__title {
+  .techs__title {
     margin: 60px auto 0 auto;
     font-size: 30px;
     line-height: normal;
@@ -97,7 +97,7 @@
     width: 100%;
   }
 
-  .tech__subtitle {
+  .techs__subtitle {
     margin: 24px auto 0 auto;
     font-size: 11px;
     line-height: 16px;

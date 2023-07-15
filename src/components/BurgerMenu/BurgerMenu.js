@@ -9,7 +9,7 @@ const BurgerMenu = ({isOpen, handleBurgerClickClose}) => {
   const burgerMenuClassName = `burger-menu ${!isOpen && ' burger-menu_hidden'}`
 
   return (
-    <section className={burgerMenuClassName}>
+    <div className={burgerMenuClassName}>
       <button onClick={handleBurgerClickClose} className="burger-menu__close link-hover"></button>
       <ul className="burger-menu__items">
         <li className="burger-menu__item">
@@ -18,12 +18,12 @@ const BurgerMenu = ({isOpen, handleBurgerClickClose}) => {
         <li className="burger-menu__item">
           <NavLink to="/movies" className={isActiveLink}>Фильмы</NavLink>
         </li>
-        <li className="menu__item">
+        <li className="burger-menu__item">
           <NavLink to="/saved-movies" className={isActiveLink}>Сохранённые фильмы</NavLink>
         </li>
       </ul>
         <ButtonProfile/>
-    </section>
+    </div>
   );
 }
 

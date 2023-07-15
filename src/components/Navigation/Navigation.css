@@ -80,8 +80,8 @@
 }
 
 @media screen and (max-width: 992px) {
-  .menu_hidden {
-    display: none !important;
+  .menu__items_hidden {
+    display: none;
   }
 
   .menu__burger {

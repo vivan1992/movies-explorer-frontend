@@ -6,7 +6,7 @@ const SearchForm = () => {
     <section className="search-form">
       <form className="search-form__form">
         <fieldset className="search-form__wrapper">
-          <input name='movie' type="text" className="search-form__input" placeholder='Фильм'/>
+          <input name='movie' type="text" className="search-form__input" placeholder='Фильм' required/>
           <button className='search-form__submit button-hover'></button>
         </fieldset>
         <FilterCheckbox/>
