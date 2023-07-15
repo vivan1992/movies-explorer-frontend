@@ -33,6 +33,7 @@
 .card__image {
   object-fit: cover;
   width: 100%;
+  height: 200px;
 }
 
 .card__like {
@@ -51,9 +52,36 @@
   line-height: 11px;
   border: none;
   cursor: pointer;
+  padding: 0;
 }
 
 .card__like_active {
   background: url('../../images/like.svg') center no-repeat;
   background-color: #EE3465;
+}
+
+@media screen and (max-width: 992px) {
+  .card__image {
+    height: 190px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .card__title-wrapper {
+    padding: 0 14px;
+  }
+
+  .card__title {
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .card__duration {
+    font-size: 10px;
+  }
+
+  .card__image {
+    height: 168px;
+  }
+
 }

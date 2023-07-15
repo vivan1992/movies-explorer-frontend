@@ -1,9 +1,10 @@
 .not-found {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
+  padding-bottom: 60px;
 }
 
 .not-found__title {
@@ -39,4 +40,32 @@
   cursor: pointer;
   margin-top: 184px;
   padding: 0;
+}
+
+@media screen and (max-width: 992px) {
+  .not-found {
+    padding-bottom: 222px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .not-found {
+    padding-bottom: 30px;
+  }
+
+  .not-found__title {
+    font-size: 80px;
+    line-height: normal;
+    padding-top: 6px;
+  }
+
+  .not-found__subtitle {
+    font-size: 12px;
+    padding-top: 10px;
+  }
+
+  .not-found__button {
+    margin-top: 285px;
+    font-size: 12px;
+  }
 }

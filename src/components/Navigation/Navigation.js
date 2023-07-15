@@ -1,8 +1,11 @@
 import './Navigation.css'
 import { Link, NavLink, Route, Routes } from 'react-router-dom';
+import ButtonProfile from '../ButtonProfile/ButtonProfile';
 
-const Navigation = () => {
+const Navigation = ({handleBurgerClick}) => {
+
   const isActiveLink = ({ isActive }) =>(isActive ? "menu__link link-hover menu__link_active" : "menu__link link-hover");
+
   const arrPath = ['/movies', '/saved-movies', '/profile'];
 
   const renderRouteWithArrPath = (element) => {
@@ -15,7 +18,7 @@ const Navigation = () => {
   };
 
   const moviesRoute = renderRouteWithArrPath(
-    <ul className="menu__items">
+    <ul className="menu__items menu_hidden">
       <li className="menu__item">
         <NavLink to="/movies" className={isActiveLink}>Фильмы</NavLink>
       </li>
@@ -26,11 +29,16 @@ const Navigation = () => {
   );
 
   const profileRoute = renderRouteWithArrPath(
-    <li className="menu__item link-hover">
-      <Link to="/profile" className='menu__link menu__link_font-size14 menu__link_line-height16'>Аккаунт</Link>
-      <Link to="/profile" className='menu__profile-icon'/>
-    </li>
+    <>
+      <ButtonProfile className='menu_hidden'/>
+      <li onClick={handleBurgerClick} className="menu__burger link-hover">
+        <div className="menu__burger-line"></div>
+        <div className="menu__burger-line"></div>
+        <div className="menu__burger-line"></div>
+      </li>
+    </>
   );
+
   return (
     <nav className='menu'>
         <Routes>
@@ -54,8 +62,6 @@ const Navigation = () => {
 
             </Routes>
           </ul>
-
-
       </nav>
   );
 }

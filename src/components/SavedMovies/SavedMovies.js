@@ -5,7 +5,7 @@ const SavedMovies = ({card, textButton}) => {
   return (
     <>
       <SearchForm/>
-      <MoviesCardList card={card} textButton={textButton}/>
+      <MoviesCardList card={card} textButton={textButton} isVisibleButton={false}/>
     </>
   );
 }

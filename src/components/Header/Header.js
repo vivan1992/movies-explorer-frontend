@@ -2,11 +2,11 @@ import './Header.css';
 import Navigation from '../Navigation/Navigation';
 import Logo from '../Logo/Logo';
 
-const Header = () => {
+const Header = ({handleBurgerClick}) => {
   return (
     <header className='header'>
       <Logo/>
-      <Navigation/>
+      <Navigation handleBurgerClick={handleBurgerClick}/>
     </header>
   );
 }

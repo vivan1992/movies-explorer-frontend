@@ -1,6 +1,6 @@
 .login-form {
   width: 396px;
-  height: 527px;
+  min-height: 527px;
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -19,7 +19,7 @@
 .login-form__form {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 25px;
   width: 100%;
   flex-grow: 1;
 }
@@ -48,6 +48,7 @@
   background: none;
   border: none;
   border-bottom: 1px solid #424242;
+  padding: 0;
   padding-bottom: 9px;
 }
 
@@ -71,4 +72,27 @@
   width: 100%;
   align-content: flex-end;
   margin-top: auto;
+  border: none;
+  padding: 0;
+}
+
+@media screen and (max-width: 576px) {
+  .login-form {
+    width: 100%;
+    align-items: center;
+    gap: 50px;
+    min-height: 665px;
+  }
+
+  .login-form__title {
+    text-align: center;
+  }
+
+  .login-form__form {
+    margin-top: 30px;
+  }
+
+  .login-form__submit {
+    font-size: 12px;
+  }
 }

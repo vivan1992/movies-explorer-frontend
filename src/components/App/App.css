@@ -5,6 +5,8 @@
   flex-direction: column;
   align-items: center;
   font-family: 'Inter', 'Arial', sans-serif;
+  position: relative;
+  overflow: hidden; /* Применяется для скрытия бургерного меню и его последующей */
 }
 
 .link-hover:hover {
