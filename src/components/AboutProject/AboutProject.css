@@ -1,0 +1,136 @@
+.about-project {
+  padding: 110px 70px 100px;
+  width: 100%;
+}
+
+.about-project__descr-wrap {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px 40px;
+  padding-top: 72px;
+}
+
+.about-project__descr {
+  color: #FFF;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.about-project__descr_title {
+  font-size: 20px;
+  letter-spacing: -0.8px;
+}
+
+.about-project__graph-wrap {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 110px;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: repeat(2, 36px);
+  row-gap: 5px;
+}
+
+.about-project__graph {
+  background: #303030;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.about-project__graph_green {
+  background: #3DDC84;
+  color: #000;
+}
+
+.about-project__graph-descr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8B8B8B;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 17px;
+}
+
+@media screen and (max-width: 768px) {
+  .about-project {
+    padding: 90px 50px 80px;
+  }
+
+  .about-project__descr-wrap {
+    gap: 22px 30px;
+    padding-top: 69px;
+  }
+
+  .about-project__descr {
+    line-height: 18px;
+    font-size: 12px;
+  }
+
+  .about-project__descr_title {
+    font-size: 20px;
+    line-height: normal;
+  }
+
+  .about-project__graph-wrap {
+    margin-top: 93px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .about-project {
+    padding: 70px 18px;
+  }
+
+  .about-project__descr-wrap {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding-top: 60px;
+  }
+
+  .about-project__descr {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .about-project__descr_second {
+    grid-row: 2/3;
+    margin-bottom: 40px;
+  }
+
+  .about-project__descr_title {
+    font-size: 18px;
+    letter-spacing: -0.72px;
+    line-height: 22px;
+  }
+
+  .about-project__graph-wrap {
+    margin-top: 60px;
+    grid-template-columns: 2.2fr 4fr;
+    grid-template-rows: 35px 15px;
+    row-gap: 8px;
+  }
+
+  .about-project__graph {
+    font-size: 11px;
+  }
+
+  .about-project__graph-descr {
+    font-size: 11px;
+    font-weight: 400;
+    line-height: normal;
+  }
+}

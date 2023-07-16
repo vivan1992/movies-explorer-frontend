@@ -1,0 +1,44 @@
+.portfolio-link {
+  width: 100%;
+  border-bottom: 1px solid #424242;
+  color: #FFF;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: -1.2px;
+  position: relative;
+  display: block;
+  padding-bottom: 19px;
+  padding-top: 20px;
+  text-decoration: none;
+}
+
+.portfolio-link::after {
+  content: '↗';
+  position: absolute;
+  right: 1px;
+  top: 25px;
+}
+
+.portfolio-link_border-none {
+  border-bottom: none;
+}
+
+@media screen and (max-width: 768px) {
+  .portfolio-link {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .portfolio-link {
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: -0.72px;
+  }
+
+  .portfolio-link::after {
+    top: 20px;
+  }
+}

@@ -1,0 +1,27 @@
+.button-profile {
+  color: #FFF;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.button-profile::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 30px;
+  background: url('../../images/profile.svg') center no-repeat;
+  border-radius: 6px;
+  background-color: #313131;
+  margin-left: 13px;
+}
+
+@media screen and (max-width: 992px) {
+  .button-profile_hidden {
+    display: none;
+  }
+}
