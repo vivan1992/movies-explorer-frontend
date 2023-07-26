@@ -38,8 +38,15 @@
   height: 44px;
   border: none;
   background: url('../../images/submit.svg') center center/cover no-repeat;
+  background-color: #4285F4;
+  border-radius: 5px;
   cursor: pointer;
   padding: 0;
+}
+
+.search-form__submit:disabled {
+  opacity: 0.5;
+  cursor: auto;
 }
 
 .search-form__wrapper-checkbox {
@@ -92,6 +99,18 @@
   font-style: normal;
   font-weight: 400;
   line-height: 18px;
+}
+
+.search-form__error-wrapper{
+  height: 10px;
+}
+
+.search-form__error {
+  color: #EE3465;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
 }
 
 @media screen and (max-width: 992px) {

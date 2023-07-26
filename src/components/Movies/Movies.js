@@ -3,11 +3,35 @@ import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 
 
-const Movies = ({card, textButton}) => {
+const Movies = ({
+    cards,
+    textButton,
+    handleSubmitSearchForm,
+    initialValue,
+    isCheckedShortFilm,
+    handleSaveMovie,
+    handleDeleteMovies,
+    isLoading,
+    errorServer
+  }) => {
   return (
     <>
-      <SearchForm/>
-      <MoviesCardList card={card} textButton={textButton}/>
+      <SearchForm
+        handleSubmitSearchForm={handleSubmitSearchForm}
+        initialValue={initialValue}
+        isCheckedShortFilm={isCheckedShortFilm}
+      />
+      {isLoading ?
+        <Preloader/>
+        :
+        <MoviesCardList
+          cards={cards}
+          textButton={textButton}
+          handleSaveMovie={handleSaveMovie}
+          handleDeleteMovies={handleDeleteMovies}
+          errorServer={errorServer}
+        />
+      }
     </>
   );
 }

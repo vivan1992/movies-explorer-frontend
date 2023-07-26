@@ -1,18 +1,21 @@
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './MoviesCard.css';
 
 
-const MoviesCard = ({card, textButton}) => {
-
-  //для демонстрации работы лайка
-  const [isLiked, setIsLiked] = useState(false);
-
+const MoviesCard = ({card, textButton, handleSaveMovie, isSaved, handleDeleteMovies}) => {
+  const savedMovies = JSON.parse(localStorage.getItem('savedMovies')).movies;
+  const savedMovie = savedMovies.find(i => i.movieId === card.id);
   const hendelClickLike = () => {
-    setIsLiked(isLiked => !isLiked);
+    if (card._id) {
+      handleDeleteMovies(card._id);
+    } else {
+      savedMovie ? handleDeleteMovies(savedMovie._id) : handleSaveMovie(card);
+    }
+
   }
 
   const cardLikeButtonClassName = (
-    `card-list__like button-hover ${isLiked && 'card-list__like_active'}`
+    `card-list__like button-hover ${savedMovie && 'card-list__like_active'}`
   );;
 
 
@@ -36,15 +39,19 @@ const MoviesCard = ({card, textButton}) => {
 
   const duration = card.duration > 60 ? `${hours} ${unitHours} ${minutes} ${unitMinutes}` : `${minutes} ${unitMinutes}`;
 
+  const imageUrl = isSaved ? card.image : 'https://api.nomoreparties.co' + card.image.url;
+
   return (
     <>
       <div className="card-list__title-wrapper">
         <p className="card-list__title">{card.nameRU}</p>
         <p className="card-list__duration">{duration}</p>
       </div>
-      <img className='card-list__image' src={card.image} alt={card.nameRU} />
+      <Link to={card.trailerLink} target="_blank">
+        <img className='card-list__image' src={imageUrl} alt={card.nameRU} />
+      </Link>
       <button className={cardLikeButtonClassName} onClick={hendelClickLike}>
-        {!isLiked ? textButton : null}
+        {!savedMovie ? textButton : null}
       </button>
     </>
   );

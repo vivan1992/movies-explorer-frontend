@@ -1,15 +1,44 @@
 import './SearchForm.css';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
+import { useEffect, useState } from 'react';
 
-const SearchForm = () => {
+import { useFormWithValidation } from '../../hooks/useValidate';
+
+const SearchForm = ({handleSubmitSearchForm, initialValue = '', isCheckedShortFilm = false, isSaved}) => {
+  const [isChecked, setIsChecked] = useState(isCheckedShortFilm);
+  const { values, handleChange, errors, isValid } = useFormWithValidation({search: initialValue});
+  const { search } = values;
+
+  useEffect(() => {
+    if (search) {
+      handleSubmitSearchForm(search, isChecked);
+    }
+  }, [isChecked])
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleSubmitSearchForm(search, isChecked);
+  };
+
   return (
     <section className="search-form">
-      <form className="search-form__form">
+      <form noValidate className="search-form__form" onSubmit={handleSubmit}>
         <fieldset className="search-form__wrapper">
-          <input name='movie' type="text" className="search-form__input" placeholder='Фильм' required/>
-          <button className='search-form__submit button-hover'></button>
+          <input
+            name='search'
+            type="text"
+            className="search-form__input"
+            placeholder='Фильм'
+            required={!isSaved}
+            value={search}
+            onChange={handleChange}
+          />
+          <button disabled={!isValid} type='submit' className='search-form__submit button-hover'></button>
         </fieldset>
-        <FilterCheckbox/>
+        <div className="search-form__error-wrapper">
+          <span className='search-form__error'>{errors.search}</span>
+        </div>
+        <FilterCheckbox isChecked={isChecked} setIsChecked={setIsChecked}/>
       </form>
     </section>
   )
