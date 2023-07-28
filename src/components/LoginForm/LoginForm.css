@@ -92,6 +92,10 @@
   line-height: 1;
 }
 
+.login-form__preloader-wrapper {
+  height: 100px;
+}
+
 @media screen and (max-width: 576px) {
   .login-form {
     width: 100%;

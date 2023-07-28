@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect, useContext } from 'react';
 import './Profile.css';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-
 import { useFormWithValidation } from '../../hooks/useValidate';
 
 const Profile = ({handleSignOut, handleUpdateUser, isLoading}) => {
@@ -85,7 +84,6 @@ const Profile = ({handleSignOut, handleUpdateUser, isLoading}) => {
       :
       <button onClick={handleClickCancel} className='profile__exit link-hover'>Отмена</button>
       }
-
     </section>
   )
 }

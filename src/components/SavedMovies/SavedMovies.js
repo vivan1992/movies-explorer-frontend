@@ -6,12 +6,11 @@ const SavedMovies = ({cards, textButton, handleSubmitSearchForm, handleDeleteMov
   const initialCard = localStorage.getItem('savedMovies') ? JSON.parse(localStorage.getItem('savedMovies')).movies : [];
   const [isSeached, setIsSeached] = useState(false);
 
-  const handleSubmitForm = (data) => {
-    handleSubmitSearchForm(data);
+  const handleSubmitForm = (search, isChecked) => {
+    handleSubmitSearchForm(search, isChecked);
     setIsSeached(true);
   }
 
-  console.log('save');
   return (
     <>
       <SearchForm

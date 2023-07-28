@@ -44,8 +44,6 @@ const MoviesCardList = ({cards, textButton, isVisibleButton = true, handleSaveMo
     }
   };
 
-  console.log('render');
-
   const handleClickMore = () => {
     if (isScreenLg) {
       setOffsetLg((offset) => offset + 2);

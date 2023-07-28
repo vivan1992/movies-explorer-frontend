@@ -14,13 +14,21 @@ import Register from '../Register/Register';
 import NotFound from '../NotFound/NotFouns';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
 import moviesApi from '../../utils/MoviesApi';
 import mainApi from '../../utils/MainApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 import filterSearchSubmit from '../../utils/filter';
-import { MOVIE_API_URL, TEXT_ERROR_SERVER } from '../../utils/constants';
+import {
+  MOVIE_API_URL,
+  TEXT_ERROR_SERVER,
+  TEXT_ERROR_LOGIN,
+  TEXT_ERROR_DUPLICATE,
+  TEXT_SUCCESS_USER_UPDATE } from '../../utils/constants';
+import ok from '../../images/ok.svg';
+import error from '../../images/error.svg';
 
 const App = () => {
   const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState(false);
@@ -43,6 +51,10 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorServer, setErrorServer] = useState('');
   const [errorServerSavedMovies, setErrorServerSavedMovies] = useState('');
+  const [isTooltipPopupOpen, setIsTooltipPopupOpen] = useState(false);
+  const [isSuccessTooltipStatus, setIsSuccessTooltipStatus] = useState(false);
+  const [textTooltip, setTextTooltip] = useState('');
+
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -68,7 +80,9 @@ const App = () => {
             movies: savedMovies
           }));
         })
-        .catch(err => setErrorServerSavedMovies(TEXT_ERROR_SERVER));
+        .catch(err => {
+          setErrorServerSavedMovies(TEXT_ERROR_SERVER);
+        });
     }
   }, [loggedIn]);
 
@@ -77,12 +91,12 @@ const App = () => {
     if (isLoggedIn) {
       mainApi.checkJWT()
         .then(res => {
-          if (res){
-            setLoggedIn(true);
-          }
+          setLoggedIn(true);
         })
         .catch(err => {
-          console.log(err);
+          setIsSuccessTooltipStatus(false);
+          setTextTooltip(TEXT_ERROR_SERVER);
+          handleOpenTooltip();
         })
     };
   }, []);
@@ -119,7 +133,11 @@ const App = () => {
           movies: [movie, ...saveMovies]
         }));
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        setIsSuccessTooltipStatus(false);
+        setTextTooltip(TEXT_ERROR_SERVER);
+        handleOpenTooltip();
+      });
   };
 
   const handleDeleteMovies = (movieId) => {
@@ -133,7 +151,11 @@ const App = () => {
         }));
         setSaveMovies(newSaveMovies);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        setIsSuccessTooltipStatus(false);
+        setTextTooltip(TEXT_ERROR_SERVER);
+        handleOpenTooltip();
+      });
   };
 
   const handleSubmitSearchForm = async (requestText, isChecked) => {
@@ -150,7 +172,6 @@ const App = () => {
     }
 
     const allMovies = await JSON.parse(localStorage.getItem('movies'));
-    console.log(allMovies);
     if (allMovies) {
       const filteredMovies = filterSearchSubmit(allMovies, requestText, isChecked)
       localStorage.setItem('filteredMovies', JSON.stringify({
@@ -169,7 +190,7 @@ const App = () => {
     if (requestText === '') {
       setSaveMovies(movies);
     } else {
-      const filteredMovies = filterSearchSubmit(movies, requestText, isChecked)
+      const filteredMovies = filterSearchSubmit(movies, requestText, isChecked);
       setSaveMovies(filteredMovies);
     }
   }
@@ -178,30 +199,33 @@ const App = () => {
     mainApi.setUserInfo(data)
       .then(res => {
         setCurrentUser(res);
+        setIsSuccessTooltipStatus(true);
+        setTextTooltip(TEXT_SUCCESS_USER_UPDATE);
+      })
+      .finally(() => {
+        handleOpenTooltip();
       })
       .catch(err => {
+        setIsSuccessTooltipStatus(false);
+        setTextTooltip(err.status === 409 ? TEXT_ERROR_DUPLICATE : TEXT_ERROR_SERVER);
         console.log(err);
       });
   }
 
   function handleRegisterSubmit(data) {
     const {email, password} = data;
-    console.log(data);
-    setIsLoading(true);
     mainApi.register(data)
       .then((res) => {
         handleLoginSubmit({email, password});
       })
-      .finally(() => {
-        setIsLoading(false);
-      })
       .catch(err => {
-        console.log(err);
+        setIsSuccessTooltipStatus(false);
+        setTextTooltip(err.status === 409 ? TEXT_ERROR_DUPLICATE : TEXT_ERROR_SERVER);
+        handleOpenTooltip();
       })
   }
 
   function handleLoginSubmit(data) {
-    setIsLoading(true);
     mainApi.authorize(data)
       .then((res) => {
         if (res.isLoggedIn) {
@@ -211,8 +235,10 @@ const App = () => {
           console.log(res)
         }
       })
-      .finally(() => setIsLoading(false))
       .catch(err => {
+        setIsSuccessTooltipStatus(false);
+        setTextTooltip(err.status === 401 ? TEXT_ERROR_LOGIN : TEXT_ERROR_SERVER);
+        handleOpenTooltip();
         console.log(err);
       })
   }
@@ -222,9 +248,26 @@ const App = () => {
       .then(res => {
         setLoggedIn(false);
         localStorage.clear();
+        setFilterInpitMovies('');
+        setIsCheckedShortFilm(false);
+        setMovies([]);
+        setSaveMovies([]);
         navigate('/', {replace: true});
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        setIsSuccessTooltipStatus(false);
+        setTextTooltip(TEXT_ERROR_SERVER);
+        handleOpenTooltip();
+      });
+  }
+
+  function handleOpenTooltip() {
+    setIsTooltipPopupOpen(true);
+    setTimeout(closeTooltip, 3000);
+  }
+
+  function closeTooltip () {
+    setIsTooltipPopupOpen(false);
   }
 
   return (
@@ -285,6 +328,14 @@ const App = () => {
         </main>
         {renderCondition ? <Footer/> : null}
         <BurgerMenu isOpen={isOpenBurgerMenu} handleBurgerClickClose={handleBurgerClickClose}/>
+        <InfoTooltip
+          isOpen={isTooltipPopupOpen}
+          isSuccessTooltipStatus={isSuccessTooltipStatus}
+          onClose={closeTooltip}
+          src={isSuccessTooltipStatus ? ok : error}
+          alt={`${isSuccessTooltipStatus ? 'Успешно' : 'Ошибка'}`}
+          title={textTooltip}
+          />
       </div>
     </CurrentUserContext.Provider>
   )
