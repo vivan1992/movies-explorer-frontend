@@ -4,12 +4,20 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import { useResize } from '../../hooks/useResize';
 import { useEffect, useState } from 'react';
 
+import {
+  INITIAL_OFFSET_SM,
+  INITIAL_OFFSET_LG,
+  INITIAL_OFFSET_XL,
+  STEP_SM,
+  STEP_XL,
+} from '../../utils/constants';
+
 const MoviesCardList = ({cards, textButton, isVisibleButton = true, handleSaveMovie, isSaved = false, handleDeleteMovies, errorServer}) => {
 
   const [newCardList, setNewCardList] = useState([]);
-  const [offsetSm, setOffsetSm] = useState(5);
-  const [offsetLg, setOffsetLg] = useState(8);
-  const [offsetXl, setOffsetXl] = useState(12);
+  const [offsetSm, setOffsetSm] = useState(INITIAL_OFFSET_SM);
+  const [offsetLg, setOffsetLg] = useState(INITIAL_OFFSET_LG);
+  const [offsetXl, setOffsetXl] = useState(INITIAL_OFFSET_XL);
   const [isVisibleButtonMore, setIsVisibleButtonMore] = useState(true);
   const { isScreenLg, isScreenSm} = useResize();
 
@@ -46,13 +54,13 @@ const MoviesCardList = ({cards, textButton, isVisibleButton = true, handleSaveMo
 
   const handleClickMore = () => {
     if (isScreenLg) {
-      setOffsetLg((offset) => offset + 2);
+      setOffsetLg((offset) => offset + STEP_SM);
     }
     else if (isScreenSm) {
-      setOffsetSm((offset) => offset + 2);
+      setOffsetSm((offset) => offset + STEP_SM);
     }
     else {
-      setOffsetXl((offset) => offset + 3);
+      setOffsetXl((offset) => offset + STEP_XL);
     }
   }
 
@@ -76,14 +84,9 @@ const MoviesCardList = ({cards, textButton, isVisibleButton = true, handleSaveMo
 
   return (
     <section className="card-list">
-      {cards.length > 0 ?
-        <ul className="card-list__items">
-          {cardsElements}
-        </ul>
-        :
-        <p className="card-list__not-found">{errorServer ? errorServer : 'Ничего не найдено'}</p>
-        }
-
+      <ul className="card-list__items">
+        {cardsElements}
+      </ul>
       {isVisibleButton && isVisibleButtonMore ?
       <button onClick={handleClickMore} className='card-list__more'>Ещё</button>
       :

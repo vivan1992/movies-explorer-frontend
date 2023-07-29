@@ -1,13 +1,29 @@
 import { useState, useCallback } from "react";
 
 const nameReg = /^[а-яА-ЯёЁa-zA-Z -]+$/u;
+const emailReg = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
-const validateName = (value, errors, setErrors, setIsValid) => {
-  if (!nameReg.test(value)) {
-    setErrors({ ...errors, name: 'Имя может содержать только буквы, пробелы, дефисы' })
-    setIsValid(false)
-  }
-  else setErrors({ ...errors, name: '' })
+const validateName = (value, name, errors, setErrors, setIsValid) => {
+  switch (name) {
+    case 'name':
+      if (!nameReg.test(value)) {
+        setErrors({ ...errors, name: 'Имя может содержать только буквы, пробелы, дефисы' })
+        setIsValid(false)
+      } else {
+        setErrors({ ...errors, name: '' })
+      }
+      break;
+    case 'email':
+      if (name === 'email' && !emailReg.test(value)) {
+        setErrors({ ...errors, email: 'Введите валидный email' })
+        setIsValid(false)
+      } else {
+        setErrors({ ...errors, email: '' })
+      }
+      break;
+    default:
+      break;
+  };
 }
 
 export function useFormWithValidation(initialValue) {
@@ -21,8 +37,8 @@ export function useFormWithValidation(initialValue) {
     const value = target.value;
     setValues({...values, [name]: value});
     setErrors({...errors, [name]: target.validationMessage });
+    if (!target.validationMessage) validateName(value, name, errors, setErrors, setIsValid);
     setIsValid(target.closest("form").checkValidity());
-    if (name === 'name' && !target.validationMessage) validateName(value, errors, setErrors, setIsValid);
   };
 
   const resetForm = useCallback(

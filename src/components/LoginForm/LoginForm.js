@@ -4,7 +4,7 @@ import './LoginForm.css';
 import { useFormWithValidation } from '../../hooks/useValidate';
 
 const LoginForm = ({title, textButton, handleSubmit, isRegister, isLoading}) => {
-  const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation({name: '', email: '', password: ''});
+  const { values, handleChange, errors, isValid } = useFormWithValidation({name: '', email: '', password: ''});
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
@@ -13,7 +13,6 @@ const LoginForm = ({title, textButton, handleSubmit, isRegister, isLoading}) => 
       data.name = values.name;
     }
     handleSubmit(data);
-    resetForm();
   }
   return (
     <section className="login-form">
@@ -56,6 +55,7 @@ const LoginForm = ({title, textButton, handleSubmit, isRegister, isLoading}) => 
             name='password'
             className="login-form__input"
             required
+            minLength='8'
             onChange={handleChange}
             value={values.password}
           />

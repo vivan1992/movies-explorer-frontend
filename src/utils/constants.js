@@ -8,3 +8,13 @@ export const TEXT_ERROR_SERVER = 'Во время запроса произош�
 export const TEXT_ERROR_LOGIN = 'Неправильные почта или пароль';
 export const TEXT_ERROR_DUPLICATE = 'Пользователь с таким email уже зарегистрирован';
 export const TEXT_SUCCESS_USER_UPDATE = 'Данные успешно обновлены';
+
+export const DURATION_SHORT_FILM = 40;
+
+export const INITIAL_OFFSET_SM = 5;
+export const INITIAL_OFFSET_LG = 8;
+export const INITIAL_OFFSET_XL = 12;
+
+export const STEP_SM = 2;
+export const STEP_XL = 3;
+

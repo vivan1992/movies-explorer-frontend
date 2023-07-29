@@ -1,4 +1,6 @@
-const filterByShort = (movies) => movies.filter(movie => movie.duration <= 40);
+import { DURATION_SHORT_FILM } from "./constants";
+
+const filterByShort = (movies) => movies.filter(movie => movie.duration <= DURATION_SHORT_FILM);
 
 const filterByRequest = (movies, request) => {
   return movies.filter(movie => movie.nameRU.toLowerCase().includes(request.toLowerCase()))

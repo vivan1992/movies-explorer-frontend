@@ -15,6 +15,7 @@ import NotFound from '../NotFound/NotFouns';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import ProtectedRouteElement from '../ProtectedRoute/ProtectedRoute';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import ProtectedRouteAuthElement from '../ProtectedRouteAuth/ProtectedRouteAuth';
 
 import moviesApi from '../../utils/MoviesApi';
 import mainApi from '../../utils/MainApi';
@@ -92,11 +93,14 @@ const App = () => {
       mainApi.checkJWT()
         .then(res => {
           setLoggedIn(true);
+          navigate(location.pathname);
+          console.log(location.pathname);
         })
         .catch(err => {
           setIsSuccessTooltipStatus(false);
           setTextTooltip(TEXT_ERROR_SERVER);
           handleOpenTooltip();
+          navigate('/');
         })
     };
   }, []);
@@ -149,7 +153,10 @@ const App = () => {
         localStorage.setItem('savedMovies', JSON.stringify({
           movies: newSaveMovies
         }));
-        setSaveMovies(newSaveMovies);
+        const newFilterSaveMovies = saveMovies.filter(item => {
+          return item._id !== deleteMovie._id;
+        });
+        setSaveMovies(newFilterSaveMovies);
       })
       .catch(err => {
         setIsSuccessTooltipStatus(false);
@@ -196,6 +203,7 @@ const App = () => {
   }
 
   const handleUpdateUser = (data) => {
+    setIsLoading(true);
     mainApi.setUserInfo(data)
       .then(res => {
         setCurrentUser(res);
@@ -204,6 +212,7 @@ const App = () => {
       })
       .finally(() => {
         handleOpenTooltip();
+        setIsLoading(false);
       })
       .catch(err => {
         setIsSuccessTooltipStatus(false);
@@ -213,11 +222,13 @@ const App = () => {
   }
 
   function handleRegisterSubmit(data) {
+    setIsLoading(true);
     const {email, password} = data;
     mainApi.register(data)
       .then((res) => {
         handleLoginSubmit({email, password});
       })
+      .finally(() => setIsLoading(false))
       .catch(err => {
         setIsSuccessTooltipStatus(false);
         setTextTooltip(err.status === 409 ? TEXT_ERROR_DUPLICATE : TEXT_ERROR_SERVER);
@@ -226,6 +237,7 @@ const App = () => {
   }
 
   function handleLoginSubmit(data) {
+    setIsLoading(true);
     mainApi.authorize(data)
       .then((res) => {
         if (res.isLoggedIn) {
@@ -235,6 +247,7 @@ const App = () => {
           console.log(res)
         }
       })
+      .finally(() => setIsLoading(false))
       .catch(err => {
         setIsSuccessTooltipStatus(false);
         setTextTooltip(err.status === 401 ? TEXT_ERROR_LOGIN : TEXT_ERROR_SERVER);
@@ -321,8 +334,22 @@ const App = () => {
                 element={Profile}
               />
             }/>
-            <Route path='/signin' element={<Login handleLoginSubmit={handleLoginSubmit} isLoading={isLoading}/>}/>
-            <Route path='/signup' element={<Register handleRegisterSubmit={handleRegisterSubmit} isLoading={isLoading}/>}/>
+            <Route path='/signin' element={
+              <ProtectedRouteAuthElement
+                handleLoginSubmit={handleLoginSubmit}
+                isLoading={isLoading}
+                element={Login}
+                loggedIn={loggedIn}
+              />
+            }/>
+            <Route path='/signup' element={
+              <ProtectedRouteAuthElement
+                handleRegisterSubmit={handleRegisterSubmit}
+                isLoading={isLoading}
+                element={Register}
+                loggedIn={loggedIn}
+              />
+            }/>
             <Route path='/*' element={<NotFound/>}/>
           </Routes>
         </main>
