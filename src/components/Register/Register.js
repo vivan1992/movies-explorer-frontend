@@ -2,19 +2,17 @@ import './Register.css';
 import LoginForm from "../LoginForm/LoginForm";
 import { Link } from 'react-router-dom';
 
-const Register = () => {
+const Register = ({handleRegisterSubmit, isLoading}) => {
+
   return (
     <div className="register">
-      <LoginForm title='Добро пожаловать!' textButton='Зарегистрироваться'>
-        <label className='login-form__field'>
-          <span className="login-form__placeholder">Имя</span>
-          <input
-            type="text"
-            name='name'
-            className="login-form__input"
-            required
-          />
-        </label>
+      <LoginForm
+        title='Добро пожаловать!'
+        textButton='Зарегистрироваться'
+        handleSubmit={handleRegisterSubmit}
+        isRegister={true}
+        isLoading={isLoading}
+      >
     </LoginForm>
       <p className='register__link-descr'>
         Уже зарегистрированы?

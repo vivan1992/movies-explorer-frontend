@@ -1,6 +1,6 @@
 .card-list__title-wrapper {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
   padding: 0 18px;
   gap: 14px;
   width: 100%;
@@ -16,7 +16,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: 100%;
 }
 
 .card-list__duration {

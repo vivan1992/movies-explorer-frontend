@@ -6,7 +6,7 @@ const NotFound = () => {
   const navigate = useNavigate();
 
   const onClick = () => {
-    navigate(-1, {replace: true});
+    navigate(-3, {replace: true});
   }
 
   return (
